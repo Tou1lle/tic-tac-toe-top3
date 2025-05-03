@@ -62,12 +62,15 @@ function Cell() {
     return value !== "";
   }
 
+  const resetValue = () => value = "";
+
   const getValue = () => value;
 
   return {
     addValue,
     getValue,
     hasValue,
+    resetValue
   }
 }
 
@@ -178,6 +181,18 @@ function GameController() {
     }
   }
 
+  const resetGame = () => {
+    // Reset Game state
+    gameEnded = false;
+    endingMessage = "";
+    // Reset board
+    gameBoard.getBoard().forEach(cell => cell.resetValue());
+    // Reset first player
+    activePlayer = players[0];
+    // Start new game
+    printRound();
+  }
+
   const playRound = (index) => {
     if (gameEnded) return;
     const currentMark = activePlayer.getMark();
@@ -202,9 +217,11 @@ function GameController() {
     printRound();
   }
 
+  printRound();
+
   return {
     playRound,
     getGameEnded,
-    getWin,
+    resetGame,
   }
 }
