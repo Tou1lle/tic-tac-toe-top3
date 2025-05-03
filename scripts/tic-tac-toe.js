@@ -153,7 +153,23 @@ function GameController() {
   }
 
   const getWin = () => {
+    for (let i = 0; i < winningRules.length; i++) {
+      const index1 = winningRules[i][0];
+      const index2 = winningRules[i][1];
+      const index3 = winningRules[i][2];
 
+      const mark1 = gameBoard.getBoard()[index1].getValue();
+      const mark2 = gameBoard.getBoard()[index2].getValue();
+      const mark3 = gameBoard.getBoard()[index3].getValue();
+
+      if (
+        mark1 !== "" &&
+        mark1 === mark2 && 
+        mark1 === mark3
+      ) {
+        return true;
+      }
+    }
   }
 
   const playRound = (index) => {
@@ -181,5 +197,6 @@ function GameController() {
   return {
     playRound,
     getGameEnded,
+    getWin,
   }
 }
