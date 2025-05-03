@@ -29,11 +29,11 @@ function GameBoard() {
     console.log(boardNice);
   }
 
-  const checkEmptyCell = () => {
+  const hasEmptyCell = () => {
     let isEmpty = false;
     // Check each cell if it is still empty
     board.forEach(cell => {
-      if(cell.getValue() === "") {
+      if (cell.getValue() === "") {
         isEmpty = true;
       }
     });
@@ -44,7 +44,7 @@ function GameBoard() {
     getBoard,
     printBoard,
     markSpot,
-    checkEmptyCell,
+    hasEmptyCell,
   }
 }
 
@@ -53,7 +53,7 @@ function Cell() {
   let value = "";
 
   // Change the initial value to the player mark
-  const addValue = function(playerMark) {
+  const addValue = function (playerMark) {
     value = playerMark;
   }
 
@@ -105,11 +105,11 @@ function GameController() {
   // Winning indexes, useful for checking if those indexes have the same mark = Win
   const winningRules = [
     // Rows
-    [0,1,2],[3,4,5],[6,7,8],
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
     // Columns
-    [0,3,6],[1,4,7],[2,5,8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
     // Diagonal
-    [0,4,8],[2,4,6]
+    [0, 4, 8], [2, 4, 6]
   ]
 
   const switchActivePlayer = () => {
@@ -122,15 +122,35 @@ function GameController() {
     console.log(`Mark: ${activePlayer.getMark()}`);
   }
 
+  const printWinMessage = () => {
+    
+  }
+
+  const printDrawMessage = () => {
+    console.log("The Game Ended in DRAW!");
+    console.log("NO winner:(");
+  }
+
+  const checkDraw = () => {
+    return !gameBoard.hasEmptyCell();
+  }
+
   const playRound = (index) => {
-    //Check winner
-    //Check draw
     const currentMark = activePlayer.getMark();
     // Prevents switching players when chosen an already marked place
     const alreadyMarked = gameBoard.markSpot(index, currentMark);
     if (alreadyMarked) {
       console.log("Already marked here! Chose again");
-      printRound();
+      gameBoard.printBoard();
+      return;
+    }
+
+    //Check winner
+    
+    //Check draw
+    if (checkDraw()) {
+      gameBoard.printBoard();
+      printDrawMessage();
       return;
     }
 
