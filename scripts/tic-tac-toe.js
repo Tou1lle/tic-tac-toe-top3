@@ -98,6 +98,16 @@ function GameController() {
   const players = [player1, player2];
   let activePlayer = players[0];
 
+  // Winning indexes, useful for checking if those indexes have the same mark = Win
+  const winningRules = [
+    // Rows
+    [0,1,2],[3,4,5],[6,7,8],
+    // Columns
+    [0,3,6],[1,4,7],[2,5,8],
+    // Diagonal
+    [0,4,8],[2,4,6]
+  ]
+
   const switchActivePlayer = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
   }
