@@ -97,4 +97,8 @@ function GameController() {
 
   const players = [player1, player2];
   let activePlayer = players[0];
+
+  const switchActivePlayer = () => {
+    activePlayer = activePlayer === players[0] ? players[1] : players[0];
+  }
 }
