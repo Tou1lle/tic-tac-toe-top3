@@ -140,13 +140,19 @@ function GameController() {
 
   const setGameEnded = () => gameEnded = true;
 
-  const checkGameEnded = () => gameEnded;
+  const setGameDraw = () => {
+    gameBoard.printBoard();
+    setDrawMessage();
+    setGameEnded();
+  }
 
-  const checkDraw = () => {
+  const getGameEnded = () => gameEnded;
+
+  const getDraw = () => {
     return !gameBoard.hasEmptyCell();
   }
 
-  const checkWin = () => {
+  const getWin = () => {
 
   }
 
@@ -163,10 +169,8 @@ function GameController() {
     //Check winner
     
     //Check draw
-    if (checkDraw()) {
-      gameBoard.printBoard();
-      setDrawMessage();
-      setGameEnded();
+    if (getDraw()) {
+      setGameDraw();
       return;
     }
 
@@ -176,6 +180,6 @@ function GameController() {
 
   return {
     playRound,
-    checkGameEnded,
+    getGameEnded,
   }
 }
