@@ -1,4 +1,4 @@
-function gameBoard() {
+function GameBoard() {
   const board = [];
   const rows = 3;
   const columns = 3;
@@ -35,7 +35,7 @@ function gameBoard() {
   }
 }
 
-function cell() {
+function Cell() {
   // Initial value for all cells
   let value = "";
 
@@ -56,4 +56,8 @@ function cell() {
     getValue,
     hasValue,
   }
+}
+
+function Player() {
+
 }
