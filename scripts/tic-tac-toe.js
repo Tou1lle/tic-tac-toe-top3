@@ -30,6 +30,7 @@ function GameBoard() {
 
   const checkEmptyCell = () => {
     let isEmpty = false;
+    // Check each cell if it is still empty
     board.forEach(cell => {
       if(cell.getValue() === "") {
         isEmpty = true;
