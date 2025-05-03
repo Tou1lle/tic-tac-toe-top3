@@ -14,7 +14,7 @@ function GameBoard() {
 
   // Change the mark based on index
   // if the place is already occupied (not empty string), do nothing
-  const changeMark = (index, mark) => {
+  const markSpot = (index, mark) => {
     if (board[index].hasValue()) return;
     board[index].addValue(mark);
   }
@@ -42,7 +42,7 @@ function GameBoard() {
   return {
     getBoard,
     printBoard,
-    changeMark,
+    markSpot,
     checkEmptyCell,
   }
 }
@@ -88,5 +88,13 @@ function Player(name, mark) {
 }
 
 function GameController() {
+  const markX = "X"
+  const markO = "O"
 
+  const player1 = Player("Nigga", markX);
+  const player2 = Player("Monkey", markO);
+  const gameBoard = GameBoard();
+
+  const players = [player1, player2];
+  let activePlayer = players[0];
 }
