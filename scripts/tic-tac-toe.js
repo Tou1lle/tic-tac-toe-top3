@@ -181,6 +181,8 @@ function GameController() {
     }
   }
 
+  const getPlayers = () => players;
+
   const resetGame = () => {
     // Reset Game state
     gameEnded = false;
@@ -223,5 +225,6 @@ function GameController() {
     playRound,
     getGameEnded,
     resetGame,
+    getPlayers,
   }
 }
