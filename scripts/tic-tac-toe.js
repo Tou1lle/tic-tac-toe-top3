@@ -146,6 +146,12 @@ function GameController() {
     setGameEnded();
   }
 
+  const setGameWin = () => {
+    gameBoard.printBoard();
+    setWinMessage();
+    setGameEnded();
+  }
+
   const getGameEnded = () => gameEnded;
 
   const getDraw = () => {
@@ -173,6 +179,7 @@ function GameController() {
   }
 
   const playRound = (index) => {
+    if (gameEnded) return;
     const currentMark = activePlayer.getMark();
     // Prevents switching players when chosen an already marked place
     const alreadyMarked = gameBoard.markSpot(index, currentMark);
@@ -181,15 +188,16 @@ function GameController() {
       gameBoard.printBoard();
       return;
     }
-
     //Check winner
-    
+    if (getWin()) {
+      setGameWin();
+      return;
+    } 
     //Check draw
     if (getDraw()) {
       setGameDraw();
       return;
     }
-
     switchActivePlayer()
     printRound();
   }
