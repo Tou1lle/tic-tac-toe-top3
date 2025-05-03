@@ -58,6 +58,17 @@ function Cell() {
   }
 }
 
-function Player() {
+function Player(name, mark) {
+  const getName = () => name;
+  const getMark = () => mark;
 
+  const setName = (newName) => name = newName;
+  const setMark = (newMark) => mark = newMark;
+
+  return {
+    getName,
+    getMark,
+    setName,
+    setMark,
+  }
 }
