@@ -111,4 +111,14 @@ function GameController() {
   const switchActivePlayer = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
   }
+
+  const printRound = () => {
+    gameBoard.printBoard();
+    console.log(`${activePlayer.getName()}'s turn.`);
+    console.log(`Mark: ${activePlayer.getMark()}`);
+  }
+
+  return {
+    printRound,
+  }
 }
