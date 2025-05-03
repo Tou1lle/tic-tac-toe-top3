@@ -22,7 +22,10 @@ function gameBoard() {
   // Prints the board to the console for console version
   const printBoard = () => {
     const boardWithValues = board.map(cell => cell.getValue());
+    // Hardcoded version of the board so it looks somewhat the same as normal tictactoe board on console
+    const boardNice = `${board[0].getValue()} | ${board[1].getValue()} | ${board[2].getValue()}\n${board[3].getValue()} | ${board[4].getValue()} | ${board[5].getValue()}\n${board[6].getValue()} | ${board[7].getValue()} | ${board[8].getValue()}`
     console.log(boardWithValues);
+    console.log(boardNice);
   }
 
   return {
