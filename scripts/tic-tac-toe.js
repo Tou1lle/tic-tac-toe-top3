@@ -59,9 +59,11 @@ function Cell() {
 }
 
 function Player(name, mark) {
+  // Name and mark for a player (mark will be either O or X)
   const getName = () => name;
   const getMark = () => mark;
 
+  // Setter for changing names in UI
   const setName = (newName) => name = newName;
   const setMark = (newMark) => mark = newMark;
 
