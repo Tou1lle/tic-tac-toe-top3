@@ -6,7 +6,7 @@ function GameBoard() {
 
   // Create the gameboard 3x3 for TOP
   for (let i = 0; i < boardSize; i++) {
-    board.push(cell());
+    board.push(Cell());
   }
 
   // Return the board for rendering in UI
@@ -28,10 +28,21 @@ function GameBoard() {
     console.log(boardNice);
   }
 
+  const checkEmptyCell = () => {
+    let isEmpty = false;
+    board.forEach(cell => {
+      if(cell.getValue() === "") {
+        isEmpty = true;
+      }
+    });
+    return isEmpty;
+  }
+
   return {
     getBoard,
     printBoard,
     changeMark,
+    checkEmptyCell,
   }
 }
 
@@ -73,4 +84,8 @@ function Player(name, mark) {
     setName,
     setMark,
   }
+}
+
+function GameController() {
+
 }
