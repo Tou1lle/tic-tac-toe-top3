@@ -112,6 +112,10 @@ function GameController() {
     [0, 4, 8], [2, 4, 6]
   ]
 
+  // Ending the game
+  let gameEnded = false;
+  let endingMessage = "";
+
   const switchActivePlayer = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
   }
@@ -122,17 +126,28 @@ function GameController() {
     console.log(`Mark: ${activePlayer.getMark()}`);
   }
 
-  const printWinMessage = () => {
-    
+  const setWinMessage = () => {
+    endingMessage = `${activePlayer.getName()} with mark "${activePlayer.getMark()}" has won!`;
+    // For console version
+    console.log(endingMessage);
   }
 
-  const printDrawMessage = () => {
-    console.log("The Game Ended in DRAW!");
-    console.log("NO winner:(");
+  const setDrawMessage = () => {
+    endingMessage = "The Game Ended in DRAW!\nNO winner:("
+    // For console version
+    console.log(endingMessage);
   }
+
+  const setGameEnded = () => gameEnded = true;
+
+  const checkGameEnded = () => gameEnded;
 
   const checkDraw = () => {
     return !gameBoard.hasEmptyCell();
+  }
+
+  const checkWin = () => {
+
   }
 
   const playRound = (index) => {
@@ -150,7 +165,8 @@ function GameController() {
     //Check draw
     if (checkDraw()) {
       gameBoard.printBoard();
-      printDrawMessage();
+      setDrawMessage();
+      setGameEnded();
       return;
     }
 
@@ -159,7 +175,7 @@ function GameController() {
   }
 
   return {
-    printRound,
     playRound,
+    checkGameEnded,
   }
 }
