@@ -228,3 +228,7 @@ function GameController() {
     getPlayers,
   }
 }
+
+function ScreenController() {
+  
+}
