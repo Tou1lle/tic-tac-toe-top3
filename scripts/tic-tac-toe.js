@@ -15,7 +15,8 @@ function GameBoard() {
   // Change the mark based on index
   // if the place is already occupied (not empty string), do nothing
   const markSpot = (index, mark) => {
-    if (board[index].hasValue()) return;
+    // Return value will be helpful in the GameController to avoid switching players wrongly
+    if (board[index].hasValue()) return true;
     board[index].addValue(mark);
   }
 
@@ -88,13 +89,16 @@ function Player(name, mark) {
 }
 
 function GameController() {
+  // Tic Tac Toe Marks
   const markX = "X"
   const markO = "O"
 
+  // Initial assets - players and gameboard
   const player1 = Player("Nigga", markX);
   const player2 = Player("Monkey", markO);
   const gameBoard = GameBoard();
 
+  // Put players into array for easy switching active player
   const players = [player1, player2];
   let activePlayer = players[0];
 
@@ -118,7 +122,24 @@ function GameController() {
     console.log(`Mark: ${activePlayer.getMark()}`);
   }
 
+  const playRound = (index) => {
+    //Check winner
+    //Check draw
+    const currentMark = activePlayer.getMark();
+    // Prevents switching players when chosen an already marked place
+    const alreadyMarked = gameBoard.markSpot(index, currentMark);
+    if (alreadyMarked) {
+      console.log("Already marked here! Chose again");
+      printRound();
+      return;
+    }
+
+    switchActivePlayer()
+    printRound();
+  }
+
   return {
     printRound,
+    playRound,
   }
 }
