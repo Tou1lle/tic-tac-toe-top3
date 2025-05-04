@@ -239,18 +239,20 @@ function ScreenController() {
   const game = GameController();
 
   const updateBoard = () => {
+    boardDOM.textContent = "";
     game.getBoard().forEach((cell, index) => {
-      boardDOM.textContent = "";
 
       const button = document.createElement("button");
       button.classList.add("cell");
       button.dataset.place = index;
       button.textContent = cell.getValue();
-      
+
       boardDOM.appendChild(button);
     });
   }
 
+  // Initial run to display buttons
+  updateBoard();
   return {
     updateBoard,
   }
