@@ -231,5 +231,27 @@ function GameController() {
 }
 
 function ScreenController() {
-  
+  // Gather assets to display info on them
+  const playerNamesDOM = Array.from(document.querySelectorAll(".player-name"));
+  const playerMarksDOM = Array.from(document.querySelectorAll(".player-mark"));
+  const boardDOM = document.querySelector(".board-container");
+
+  const game = GameController();
+
+  const updateBoard = () => {
+    game.getBoard().forEach((cell, index) => {
+      boardDOM.textContent = "";
+
+      const button = document.createElement("button");
+      button.classList.add("cell");
+      button.dataset.place = index;
+      button.textContent = cell.getValue();
+      
+      boardDOM.appendChild(button);
+    });
+  }
+
+  return {
+    updateBoard,
+  }
 }
