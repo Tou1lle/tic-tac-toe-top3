@@ -32,3 +32,12 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.board-container {
+  width: 550px;
+  height: 550px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
