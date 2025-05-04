@@ -251,9 +251,19 @@ function ScreenController() {
     });
   }
 
+  const clickPlayHandler = (e) => {
+    const index = e.target.dataset.place
+
+    game.playRound(index);
+    updateBoard();
+  }
+
+  boardDOM.addEventListener("click", clickPlayHandler);
   // Initial run to display buttons
   updateBoard();
   return {
     updateBoard,
   }
 }
+
+ScreenController();
