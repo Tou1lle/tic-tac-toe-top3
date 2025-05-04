@@ -226,6 +226,7 @@ function GameController() {
     getGameEnded,
     resetGame,
     getPlayers,
+    getBoard: gameBoard.getBoard,
   }
 }
 
