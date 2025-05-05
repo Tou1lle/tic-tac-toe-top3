@@ -97,7 +97,7 @@ function GameController() {
   const markO = "O"
 
   // Initial assets - players and gameboard
-  const player1 = Player("Nigga", markX);
+  const player1 = Player("Gorilla", markX);
   const player2 = Player("Monkey", markO);
   const gameBoard = GameBoard();
 
@@ -238,6 +238,14 @@ function ScreenController() {
 
   const game = GameController();
 
+  const updatePlayers = () => {
+    const playersArr = game.getPlayers();
+    for (let i = 0; i < playersArr.length; i++) {
+      playerNamesDOM[i].textContent = playersArr[i].getName();
+      playerMarksDOM[i].textContent = playersArr[i].getMark();
+    }
+  }
+
   const updateBoard = () => {
     boardDOM.textContent = "";
     game.getBoard().forEach((cell, index) => {
@@ -265,6 +273,8 @@ function ScreenController() {
   boardDOM.addEventListener("click", clickPlayHandler);
   // Initial run to display buttons
   updateBoard();
+  updatePlayers();
+
   return {
     updateBoard,
   }
