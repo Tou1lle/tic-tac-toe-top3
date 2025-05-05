@@ -252,6 +252,8 @@ function ScreenController() {
   }
 
   const openDialog = () => dialogDOM.showModal();
+  const closeDialog = () => dialogDOM.close();
+  const clearForm = () => document.querySelector("form").reset();
   //const getID = (e) => playerID = e.target.dataset.playerid;
 
   const getNewName = () => {
@@ -264,6 +266,8 @@ function ScreenController() {
     const newName = getNewName();
 
     playersArr[playerID].setName(newName);
+    clearForm();
+    closeDialog();
     updatePlayers();
   }
 
