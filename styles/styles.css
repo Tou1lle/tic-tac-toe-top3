@@ -17,8 +17,24 @@ body {
 
 .top-side {
   text-align: center;
-  font-size: 3.5rem;
   font-weight: bold;
+}
+
+.top-side div {
+  font-size: 3rem;
+}
+
+.top-side button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--light-board);
+}
+
+.top-side button:hover {
+  cursor: pointer;
+  outline: 2px solid var(--light-text);
 }
 
 .bottom-side {
