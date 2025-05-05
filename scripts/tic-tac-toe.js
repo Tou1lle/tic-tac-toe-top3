@@ -235,6 +235,8 @@ function ScreenController() {
   const playerNamesDOM = Array.from(document.querySelectorAll(".player-name"));
   const playerMarksDOM = Array.from(document.querySelectorAll(".player-mark"));
   const boardDOM = document.querySelector(".board-container");
+  const changeNameBtns = Array.from(document.querySelectorAll(".change-name-btn"));
+  const dialogDOM = document.querySelector("dialog");
 
   const game = GameController();
 
@@ -245,6 +247,8 @@ function ScreenController() {
       playerMarksDOM[i].textContent = playersArr[i].getMark();
     }
   }
+
+  const openDialog = () => dialogDOM.showModal();
 
   const updateBoard = () => {
     boardDOM.textContent = "";
@@ -270,7 +274,9 @@ function ScreenController() {
     updateBoard();
   }
 
+  //Add event listeners to corresponding handlers
   boardDOM.addEventListener("click", clickPlayHandler);
+  changeNameBtns.forEach(btn => btn.addEventListener("click", openDialog));
   // Initial run to display buttons
   updateBoard();
   updatePlayers();
