@@ -236,6 +236,10 @@ function ScreenController() {
   const playerMarksDOM = Array.from(document.querySelectorAll(".player-mark"));
   const boardDOM = document.querySelector(".board-container");
   const changeNameBtns = Array.from(document.querySelectorAll(".change-name-btn"));
+  const dialogDOM = document.querySelector("dialog");
+  const changeNameSubmit = Array.from(document.querySelectorAll(".change-name-submit"));
+  // Used to get the ID from clicked button to change corresponding name
+  let playerID;
 
   const game = GameController();
 
@@ -247,8 +251,15 @@ function ScreenController() {
     }
   }
 
+  const openDialog = () => dialogDOM.showModal();
+  //const getID = (e) => playerID = e.target.dataset.playerid;
+
+  const getNewName = () => {
+    return document.querySelector("input").value;
+  }
+
   const changeName = (e) => {
-    const playerID = ;
+    e.preventDefault();
     const playersArr = game.getPlayers();
     const newName = getNewName();
 
@@ -283,7 +294,9 @@ function ScreenController() {
   //Add event listeners to corresponding handlers
   boardDOM.addEventListener("click", clickPlayHandler);
   changeNameBtns.forEach(btn => btn.addEventListener("click", openDialog));
-  changeNameBtns.forEach(btn => btn.addEventListener("click", getID));
+  changeNameBtns.forEach(btn => btn.addEventListener("click", (e) => {
+    playerID = e.target.dataset.playerid;
+  }));
   changeNameSubmit.forEach(btn => btn.addEventListener("click", changeName));
   // Initial run to display buttons
   updateBoard();
