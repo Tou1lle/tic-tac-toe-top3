@@ -120,3 +120,8 @@ input {
 input:focus {
   outline: none;
 }
+
+.cell.winning-cell {
+  background-color: var(--light-text);
+  color: var(--dark-background);
+}

@@ -118,6 +118,7 @@ function GameController() {
   // Ending the game
   let gameEnded = false;
   let endingMessage = "";
+  let winningIDs = [];
 
   const switchActivePlayer = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
@@ -176,17 +177,20 @@ function GameController() {
         mark1 === mark2 && 
         mark1 === mark3
       ) {
-        return true;
+        return [index1, index2, index3];
       }
     }
   }
 
   const getPlayers = () => players;
 
+  const getWinningIDs = () => winningIDs;
+ 
   const resetGame = () => {
     // Reset Game state
     gameEnded = false;
     endingMessage = "";
+    winningIDs = [];
     // Reset board
     gameBoard.getBoard().forEach(cell => cell.resetValue());
     // Reset first player
@@ -208,6 +212,7 @@ function GameController() {
     //Check winner
     if (getWin()) {
       setGameWin();
+      winningIDs = getWin();
       return;
     } 
     //Check draw
@@ -227,6 +232,7 @@ function GameController() {
     resetGame,
     getPlayers,
     getBoard: gameBoard.getBoard,
+    getWinningIDs,
   }
 }
 
@@ -282,6 +288,18 @@ function ScreenController() {
 
       boardDOM.appendChild(button);
     });
+    displayWinningCells();
+  }
+
+  const displayWinningCells = () => {
+    if (game.getGameEnded) {
+      const cellsArr = Array.from(document.querySelectorAll(".cell"));
+      const ids = game.getWinningIDs();
+
+      ids.forEach(index => {
+        cellsArr[index].classList.add("winning-cell");
+      })
+    }
   }
 
   const clickPlayHandler = (e) => {
