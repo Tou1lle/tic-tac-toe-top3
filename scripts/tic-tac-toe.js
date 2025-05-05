@@ -253,6 +253,10 @@ function ScreenController() {
 
   const clickPlayHandler = (e) => {
     const index = e.target.dataset.place
+    if (!index) {
+      console.log("Clicked on gap!");
+      return;
+    }
 
     game.playRound(index);
     updateBoard();
