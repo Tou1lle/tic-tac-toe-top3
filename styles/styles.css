@@ -1,5 +1,9 @@
 :root {
-  --clean-font: Arial, Helvetica, sans-serif
+  --clean-font: Arial, Helvetica, sans-serif;
+  --dark-background: #021526;
+  --light-board: #6EACDA;
+  --dark-cell: #03346E;
+  --light-text: #E2E2B6;
 }
 
 body {
@@ -7,8 +11,8 @@ body {
   display: flex;
   flex-direction: column;
   font-family: var(--clean-font);
-  background-color: #1D2D50;
-  color: #FCDAB7;
+  background-color: var(--dark-background);
+  color: var(--light-text);
 }
 
 .top-side {
@@ -18,21 +22,27 @@ body {
 }
 
 .bottom-side {
-  padding-top: 3rem;
+  padding: 3rem 1rem 0;
   flex: 1;
   display: flex;
+  justify-content: space-evenly;
 }
 
 .ttt-container {
-  flex: 1;
   display: flex;
   justify-content: center;
 }
 
 .player-container {
   width: 250px;
-  display: flex;
-  justify-content: center;
+  text-align: center;
+  height: fit-content;
+  padding: 1rem;
+  background-color: var(--light-text);
+  color: var(--dark-background);
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 10px;
 }
 
 .board-container {
@@ -43,13 +53,13 @@ body {
   grid-template-rows: repeat(3, 1fr);
   gap: 0.5rem;
   padding: 1rem;
-  background-color: #1E5F74;
+  background-color: var(--light-board);
   border-radius: 1rem;
 }
 
 .cell {
-  background-color: #133B5C;
-  color: #FCDAB7;
+  background-color: var(--dark-cell);
+  color: var(--light-text);
   cursor: pointer;
   outline: none;
   border: none;
@@ -59,5 +69,5 @@ body {
 }
 
 .cell:hover {
-  border: 1px solid #FCDAB7;
+  border: 1px solid var(--light-text);
 }
